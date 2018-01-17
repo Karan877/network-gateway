@@ -58,13 +58,7 @@ type Analytics struct {
 	events     *json.Encoder
 }
 
-// Initialize:
-//
-// - ~/<dir>
-// - ~/<dir>/id
-// - ~/<dir>/events
-// - ~/<dir>/last_flush
-//
+
 func (a *Analytics) init() {
 	a.initRoot()
 

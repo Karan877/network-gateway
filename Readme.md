@@ -1,15 +1,10 @@
 
-# Gateway
-
-Package gateway provides an RPC-style interface to a "service" (struct with methods) via API Gateway for HTTP access.
 
 ## About
 
-Why would you go with RPC style for API Gateway? While it's a great tool for avoiding backend server maintenance, API Gateway provides a very convoluted and unintuitive interface for creating APIs. Defining an API is not hard, they really took something simple and made it more difficult.
+In Todays' why would you go with RPC style for API Gateway? While it's a great tool for avoiding backend server maintenance, API Gateway provides a very convoluted and unintuitive interface for creating APIs. Defining an API is not hard, they really took something simple and made it more difficult. Many of API Gateway's features are unnecessary unless you're re-mapping a legacy API, so it can be much simpler to (ab)use API Gateway's scaling capabilities while effectively ignoring its other features.
 
-Many of API Gateway's features are unnecessary unless you're re-mapping a legacy API, so it can be much simpler to (ab)use API Gateway's scaling capabilities while effectively ignoring its other features.
-
-With this package you just define a struct full of methods, and public methods will be exposed via HTTP. This is similar to Dropbox's V2 API and [go-hpc](https://github.com/tj/go-hpc).
+With this package you just define a struct full of methods, and public methods will be exposed via HTTP. This is similar to Dropbox's V2 API.
 
 ## Setup
 
@@ -47,9 +42,7 @@ func main() {
 
 Deploy the API and you'll be able to invoke `/Add` or `/Sub` with the request body `{ "a": 5, "b": 10 }`. Note that snake-case is also supported, so `/add` or `/sub` work here as well. If you'd like to separate by resource, simply deploy functions to `/pets/{method}`, `/books/{method}` and so on.
 
-## Mapping Template
-
-Use the following mapping template to relay the request information to your Lambda function.
+## Mapping the idea (In Lambda function)
 
 ```json
 #set($allParams = $input.params())
@@ -145,17 +138,3 @@ The request received by go-gateway looks something like the following:
   }
 }
 ```
-
-## Badges
-
-[![Build Status](https://semaphoreci.com/api/v1/tj/go-gateway/branches/master/badge.svg)](https://semaphoreci.com/tj/go-gateway)
-[![GoDoc](https://godoc.org/github.com/tj/go-gateway?status.svg)](https://godoc.org/github.com/tj/go-gateway)
-![](https://img.shields.io/badge/license-MIT-blue.svg)
-![](https://img.shields.io/badge/status-stable-green.svg)
-[![](http://apex.sh/images/badge.svg)](https://apex.sh/ping/)
-
----
-
-> [tjholowaychuk.com](http://tjholowaychuk.com) &nbsp;&middot;&nbsp;
-> GitHub [@tj](https://github.com/tj) &nbsp;&middot;&nbsp;
-> Twitter [@tjholowaychuk](https://twitter.com/tjholowaychuk)
